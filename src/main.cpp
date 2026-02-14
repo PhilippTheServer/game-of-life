@@ -10,9 +10,18 @@
 
 
 
+// Terminal as canvas:
+// 1. Get current width and height to use as the borders
+// 2. Reduce flickering
+// 3. Remove cursor
+// 4. Draw on the Terminal
+
+
+// Seat a random layout on start
 
 
 
+// logic to precompute next alive cells to avoid fps drops
 
 
 
