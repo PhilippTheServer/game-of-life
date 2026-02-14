@@ -1,5 +1,7 @@
 #include <iostream>
-
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <stdexcept>
 
 // game logic
 // Rules:
@@ -15,6 +17,24 @@
 // 2. Reduce flickering
 // 3. Remove cursor
 // 4. Draw on the Terminal
+struct TerminalSize {
+    int width;
+    int height;
+
+    static TerminalSize detect_size() {
+        struct winsize windowInfo{};
+
+        if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &windowInfo) == -1)
+        {
+            throw std::runtime_error("\nUnable to detect terminal size.\n");
+        }
+
+        return TerminalSize{
+            static_cast<int>(windowInfo.ws_col),
+            static_cast<int>(windowInfo.ws_row)
+        };
+    }
+};
 
 
 // Seat a random layout on start
@@ -27,5 +47,11 @@
 
 int main() {
     std::cout << "\nGAME OF Life\n";
+
+    // Debug: print terminal size
+    TerminalSize terminal = TerminalSize::detect_size();
+
+    std::cout << "Width: " << terminal.width << "\n";
+    std::cout << "Height: " << terminal.height << "\n";
     return 0;
 }
