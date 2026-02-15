@@ -12,13 +12,22 @@
 
 // logic to precompute next alive cells to avoid fps drops
 
+void prepare_terminal() {
+    terminal::clearScreen();
+    terminal::moveCursorHome();
+    terminal::hideCursor();
+}
+
 int main() {
     std::cout << "\nGAME OF Life\n";
 
     TerminalSize size = terminal::detectSize();
+    prepare_terminal();
 
+    terminal::showCursor();
     // Debug: print terminal size
     std::cout << "Width: " << size.width << "\n";
     std::cout << "Height: " << size.height << "\n";
+
     return 0;
 }

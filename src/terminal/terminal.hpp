@@ -8,7 +8,7 @@ struct TerminalSize {
 namespace terminal {
 TerminalSize detectSize();
 
-void clearSreen();
+void clearScreen();
 void moveCursorHome();
 void hideCursor();
 void showCursor();

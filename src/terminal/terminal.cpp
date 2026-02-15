@@ -15,7 +15,7 @@ TerminalSize terminal::detectSize() {
                         static_cast<int>(windowInfo.ws_row)};
 }
 
-void terminal::clearSreen() { std::cout << "\x1b[2J"; }
+void terminal::clearScreen() { std::cout << "\x1b[2J"; }
 
 void terminal::moveCursorHome() { std::cout << "\x1b[H"; }
 
