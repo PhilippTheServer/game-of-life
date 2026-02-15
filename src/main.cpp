@@ -1,3 +1,4 @@
+#include "renderer/renderer.hpp"
 #include "terminal/terminal.hpp"
 #include "world/world.hpp"
 #include <chrono>
@@ -21,18 +22,19 @@ void prepare_terminal() {
     terminal::hideCursor();
 }
 
-int simulation(TerminalSize size) {
+int simulation(const TerminalSize &size) {
     World world(size.width, size.height);
 
-    world.setAlive(1, 0);
-    world.setAlive(2, 1);
-    world.setAlive(0, 2);
-    world.setAlive(1, 2);
-    world.setAlive(2, 2);
+    world.randomize(0.18);
 
     while (true) {
+        terminal::clearScreen();
+        terminal::moveCursorHome();
+
+        terminal::drawText(renderer::renderWorld(world));
+
         world.step();
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 
     return 0;

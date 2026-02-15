@@ -13,6 +13,7 @@ add_executable(game-of-life
     src/main.cpp
     src/terminal/terminal.cpp
     src/world/world.cpp
+    src/renderer/renderer.cpp
 )
 
 set_directory_properties(PROPERTIES

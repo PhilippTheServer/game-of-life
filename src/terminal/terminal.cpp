@@ -22,3 +22,8 @@ void terminal::moveCursorHome() { std::cout << "\x1b[H"; }
 void terminal::hideCursor() { std::cout << "\x1b[?25l"; }
 
 void terminal::showCursor() { std::cout << "\x1b[?25h"; }
+
+void terminal::drawText(const std::string &text) {
+    std::cout << text;
+    std::cout.flush();
+}

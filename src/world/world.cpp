@@ -1,4 +1,5 @@
 #include "world.hpp"
+#include <random>
 
 World::World(int width, int height)
     : width(width), height(height),
@@ -52,4 +53,13 @@ void World::step() {
     }
 
     current.swap(next);
+}
+
+void World::randomize(double density) {
+    std::mt19937 generator(std::random_device{}());
+    std::bernoulli_distribution distribution(density);
+
+    for (auto &cell : current) {
+        cell = distribution(generator) ? 1 : 0;
+    }
 }

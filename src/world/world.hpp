@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <random>
 #include <vector>
 
 struct World {
@@ -15,4 +16,6 @@ struct World {
 
     void setAlive(int x, int y);
     uint8_t isAlive(int x, int y) const;
+
+    void randomize(double density = 0.25);
 };
