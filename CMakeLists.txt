@@ -12,6 +12,7 @@ set(CMAKE_CXX_COMPILER g++)
 add_executable(game-of-life 
     src/main.cpp
     src/terminal/terminal.cpp
+    src/world/world.cpp
 )
 
 set_directory_properties(PROPERTIES
